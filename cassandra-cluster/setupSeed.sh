@@ -2,9 +2,11 @@
 
 source ./../conf.sh
 
+VOLUME=$(dirname `pwd`)/data/cassandra
+
 docker run -d \
     -e CASSANDRA_IS_SEED=true \
-    -v ./../data/cassandra:/var/lib/cassandra \
+    -v ${VOLUME}:/var/lib/cassandra \
     --net=host \
-    --name test_cassandra $REGISTRY/coscale/test_cassandra:$VERSION
+    --name coscale_cassandra $REGISTRY/coscale/coscale_cassandra:$VERSION
 
